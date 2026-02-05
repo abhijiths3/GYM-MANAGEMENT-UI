@@ -1,0 +1,71 @@
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+/* Header */
+thead {
+  background-color: #1f2937; /* dark gym-style */
+  color: #ffffff;
+}
+
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+}
+
+/* Remove default border */
+table, th, td {
+  border: none;
+}
+
+/* Row separator */
+tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Hover effect */
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Column alignment */
+th:first-child,
+td:first-child {
+  text-align: center;
+  width: 80px;
+}
+
+/* Email highlight */
+td:nth-child(3) {
+  color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+}
