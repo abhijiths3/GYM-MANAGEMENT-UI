@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [RouterModule],
+  imports: [RouterModule, MatButtonModule, MatMenuModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

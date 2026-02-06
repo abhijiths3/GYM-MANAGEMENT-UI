@@ -3,17 +3,19 @@
   <table border="1">
     <thead>
       <tr>
-        <th>ID</th>
+        
         <th>Name</th>
         <th>Email</th>
+        <th>Phone</th>
         <th>Joined Date</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let member of members">
-        <td>{{ member.id }}</td>
+        
         <td>{{ member.firstName }} {{ member.lastName }}</td>
         <td>{{ member.email }}</td>
+        <td>{{ member.phoneNumber}}</td>
         <td>{{ member.joinDate }}</td>
       </tr>
     </tbody>

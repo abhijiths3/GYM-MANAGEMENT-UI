@@ -7,10 +7,16 @@
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Dashboard
     </a>
-    <a routerLink="/members" routerLinkActive="active">
-      Members
-    </a>
-    <a routerLink="/subscriptions" routerLinkActive="active">
+<span
+  class="menu-text"
+  [matMenuTriggerFor]="menu">
+  Members
+</span>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Members</button>
+  <button mat-menu-item>New Member</button>
+</mat-menu>
+    <a routerLink="/addmember" routerLinkActive="active">
       Subscriptions
     </a>
     <a routerLink="/attendance" routerLinkActive="active">

@@ -16,7 +16,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/member-list/member-list.component')
             .then(m => m.MemberListComponent)
-      }]
+      },
+    {
+      path:'addmember',
+      loadComponent: () =>
+        import('./components/member-add/member-add.component')
+      .then(m => m.MemberAddComponent)
+    }
+    ]
     }
 ]
     

@@ -31,11 +31,11 @@
   transition: all 0.2s ease;
 }
 
-.nav a:hover {
-  color: #ffffff;
+.nav a:hover, .menu-text:hover {
+  color: #ef2222;
 }
 
-.nav a.active {
+.nav a.active, .menu-text.active {
   color: #22c55e;
   border-bottom: 2px solid #22c55e;
 }
