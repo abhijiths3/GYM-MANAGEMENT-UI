@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 32px;
-  background-color: #111827; /* dark */
+  background-color: #111827;
+  /* dark */
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -14,7 +15,8 @@
 }
 
 .logo span {
-  color: #22c55e; /* gym green */
+  color: #22c55e;
+  /* gym green */
 }
 
 .nav {
@@ -31,11 +33,13 @@
   transition: all 0.2s ease;
 }
 
-.nav a:hover, .menu-text:hover {
+.nav a:hover,
+.menu-text:hover {
   color: #ef2222;
 }
 
-.nav a.active, .menu-text.active {
+.nav a.active,
+.menu-text.active {
   color: #22c55e;
   border-bottom: 2px solid #22c55e;
 }

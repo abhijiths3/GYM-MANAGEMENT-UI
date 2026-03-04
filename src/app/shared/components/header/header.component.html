@@ -4,22 +4,23 @@
   </div>
 
   <nav class="nav">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a routerLink="/l" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Dashboard
     </a>
-<span
-  class="menu-text"
-  [matMenuTriggerFor]="menu">
-  Members
-</span>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Members</button>
-  <button mat-menu-item>New Member</button>
-</mat-menu>
-    <a routerLink="/addmember" routerLinkActive="active">
+
+    <a class="menu-text" routerLink="/" [matMenuTriggerFor]="menu" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Members
+    </a>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="">Members</button>
+      <button mat-menu-item routerLink="/addmember">New Member</button>
+    </mat-menu>
+    <a routerLink="/subscriptions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Subscriptions
     </a>
-    <a routerLink="/attendance" routerLinkActive="active">
+    <a routerLink="/attendance" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Attendance
     </a>
   </nav>
