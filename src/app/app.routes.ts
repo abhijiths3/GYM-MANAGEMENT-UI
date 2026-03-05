@@ -12,7 +12,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: '',
+        path: 'members',
         loadComponent: () =>
           import('./components/member-list/member-list.component')
             .then(m => m.MemberListComponent)

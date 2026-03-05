@@ -1,7 +1,32 @@
-<div class="app-wrapper">
+<!-- <div class="app-wrapper">
   <app-header></app-header>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+
+<div class="app-wrapper">
+
+  <mat-sidenav-container class="app-container">
+
+  <mat-sidenav 
+      class="sidebar"
+      mode="side"
+      [opened]="sidebarOpen()">
+      
+      <app-sidebar></app-sidebar>
+
+    </mat-sidenav>
+
+  <mat-sidenav-content>
+
+  <app-header
+    (menuClick)="toggleSidebar()">
+  </app-header>
   <!-- MAIN CONTENT -->
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

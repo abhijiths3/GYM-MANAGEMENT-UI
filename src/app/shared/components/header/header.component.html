@@ -1,27 +1,47 @@
-<header class="header">
+<mat-toolbar color="primary" class="header">
+
+  <!-- Hamburger Menu -->
+  <button mat-icon-button (click)="openMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Logo -->
   <div class="logo">
     Gym<span>Admin</span>
   </div>
 
+  <!-- Spacer -->
+  <span class="spacer"></span>
+
+  <!-- Navigation -->
   <nav class="nav">
-    <a routerLink="/l" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+    <a mat-button routerLink="/dashboard"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
       Dashboard
     </a>
 
-    <a class="menu-text" routerLink="/" [matMenuTriggerFor]="menu" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
+    <!-- Members Dropdown -->
+    <button mat-button [matMenuTriggerFor]="menu">
       Members
-    </a>
+    </button>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="">Members</button>
+      <button mat-menu-item routerLink="/members">Members</button>
       <button mat-menu-item routerLink="/addmember">New Member</button>
     </mat-menu>
-    <a routerLink="/subscriptions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+    <a mat-button routerLink="/subscriptions"
+       routerLinkActive="active">
       Subscriptions
     </a>
-    <a routerLink="/attendance" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+    <a mat-button routerLink="/attendance"
+       routerLinkActive="active">
       Attendance
     </a>
+
   </nav>
-</header>
+
+</mat-toolbar>
