@@ -1,33 +1,88 @@
 <div class="manager-container">
-  <h2>AI Gym Coupon Studio</h2>
+  <header>
+    <h1><i class="fas fa-magic"></i> AI Gym Coupon Studio</h1>
+    <p>Generate, Customize, and Export professional gym promotions</p>
+  </header>
 
   <div class="search-box">
-    <input [(ngModel)]="vibeInput" placeholder="Enter vibe (e.g. Onam Special 2026)">
-    <button (click)='onGenerate()' [disabled]="isProcessing">Generate Design</button>
+    <input [(ngModel)]="vibeInput" placeholder="Describe the vibe (e.g. Onam Fit Fest 2026)">
+    <button (click)='onGenerate()' [disabled]="isProcessing" class="gen-btn">
+      {{ isProcessing ? 'AI is Designing...' : 'Generate Design' }}
+    </button>
   </div>
 
-  <div *ngIf="currentCoupon" class="editor-layout">
-    <div #couponGraphic class="coupon-card-design">
-      <div class="red-side">
-        <span class="pct">{{currentCoupon.discountPercent}}%</span>
-        <span class="label">OFF</span>
-      </div>
-      <div class="white-side">
-        <input class="title-edit" [(ngModel)]="currentCoupon.title">
-        <textarea [(ngModel)]="currentCoupon.description"></textarea>
-        <div class="code-area">USE CODE: {{currentCoupon.code}}</div>
+  <div *ngIf="currentCoupon" class="editor-section">
+    <div class="controls">
+      <h3>1. Choose a Frame</h3>
+      <div class="frame-selector">
+        <div *ngFor="let f of frames" [class]="'frame-thumb ' + f.class" [class.active]="selectedFrame === f.id"
+          (click)="selectedFrame = f.id">
+          <span>{{f.name}}</span>
+        </div>
       </div>
     </div>
 
-    <div class="button-group">
-      <button class="btn-img" (click)="downloadCouponImage()">Download as Image (.png)</button>
-      <button class="btn-save" (click)="onSave()">Save to Database</button>
+    <div class="preview-area">
+      <h3>2. Live Preview & Edit</h3>
+      <div #couponGraphic [class]="'coupon-card-design ' + selectedFrame">
+        <div class="brand-side">
+          <div class="pct-input-wrapper">
+            <input type="number" [(ngModel)]="currentCoupon!.discountPercent" class="pct-edit-input">
+            <span class="pct-symbol">%</span>
+          </div>
+          <span class="label">OFF</span>
+        </div>
+        <div class="info-side">
+          <input class="title-edit" [(ngModel)]="currentCoupon.title">
+          <textarea class="desc-edit" [(ngModel)]="currentCoupon.description"></textarea>
+          <div class="code-badge">USE CODE: {{currentCoupon.code}}</div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-img" (click)="downloadCouponImage()">
+          <i class="fas fa-download"></i> Download PNG
+        </button>
+        <button class="btn-save" (click)="onSave()">
+          <i class="fas fa-save"></i> Save to Database
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="history-grid">
-    <div *ngFor="let c of history" class="mini-card">
-      <strong>{{c.title}}</strong> - {{c.code}}
+  <hr>
+
+  <div class="history-section">
+    <h2>Active Coupon History</h2>
+    <div class="history-grid">
+      <div *ngFor="let c of history" class="mini-coupon" (click)="openPopup(c)">
+        <div [class]="'mini-left ' + c.frameName">{{c.discountPercent}}%</div>
+        <div class="mini-right">
+          <strong>{{c.title}}</strong>
+          <code>{{c.code}}</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="selectedHistoryCoupon" (click)="closePopup()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-modal" (click)="closePopup()">&times;</button>
+
+      <div [class]="'coupon-card-design ' + selectedHistoryCoupon.frameName">
+        <div class="brand-side">
+          <div class="pct-input-wrapper">
+            <span class="pct-display-value">{{selectedHistoryCoupon.discountPercent}}</span>
+            <span class="pct-symbol">%</span>
+          </div>
+          <span class="label">OFF</span>
+        </div>
+        <div class="info-side">
+          <h2 class="title-display">{{selectedHistoryCoupon.title}}</h2>
+          <p class="desc-display">{{selectedHistoryCoupon.description}}</p>
+          <div class="code-badge">USE CODE: {{selectedHistoryCoupon.code}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

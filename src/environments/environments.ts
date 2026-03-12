@@ -10,7 +10,7 @@ export const environment = {
             create: 'Members'
         },
 
-        coupon: {
+        coupons: {
             getAllCoupons: 'Coupons',
             generate: 'Coupons/generate',
             save: 'Coupons/save'

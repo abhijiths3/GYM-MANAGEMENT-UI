@@ -5,4 +5,5 @@ export interface Coupon {
   code: string;
   discountPercent: number;
   expiryDate: string;
+  frameName: string;
 }

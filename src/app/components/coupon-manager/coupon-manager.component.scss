@@ -1,45 +1,434 @@
-.coupon-card-design {
-  width: 550px;
-  height: 220px;
+// --- Variables & Mixins ---
+:host {
+  --primary-red: #d63031;
+  --dark-bg: #2d3436;
+  --gold-grad: linear-gradient(135deg, #d4af37, #f1c40f);
+  --neon-grad: linear-gradient(135deg, #00cec9, #0984e3);
+  --glass-white: rgba(255, 255, 255, 0.95);
+}
+
+.manager-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h1 {
+      color: #2d3436;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #636e72;
+    }
+  }
+}
+
+// --- 1. Attractive Inputs & Search ---
+.search-box {
   display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  overflow: hidden;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
+
+    &:focus {
+      outline: none;
+      border-color: #6c5ce7;
+      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+    }
+  }
+
+  .gen-btn {
+    background: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 0 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      background: #5849c4;
+      transform: scale(1.02);
+    }
+
+    &:disabled {
+      background: #b2bec3;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// --- 2. Frame Selector Buttons ---
+.frame-selector {
+  display: flex;
+  gap: 15px;
   margin: 20px 0;
-}
-
-.red-side {
-  background: #d63031;
-  color: white;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border-right: 3px dashed #fff;
+
+  .frame-thumb {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    background: #eee;
+    color: #2d3436;
+
+    &.active {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-color: #2d3436;
+    }
+
+    &.classic-red {
+      background: var(--primary-red);
+      color: white;
+    }
+
+    &.modern-dark {
+      background: var(--dark-bg);
+      color: white;
+    }
+
+    &.onam-gold {
+      background: #d4af37;
+      color: white;
+    }
+
+    &.neon-sport {
+      background: #00cec9;
+      color: white;
+    }
+  }
 }
 
-.pct { font-size: 3rem; font-weight: bold; }
-
-.white-side {
-  flex: 1;
-  padding: 20px;
+// --- 3. THE MAIN COUPON DESIGN ---
+.coupon-card-design {
+  width: 650px;
+  height: 280px;
   display: flex;
-  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  margin: 30px auto;
+  transition: all 0.4s ease;
+  position: relative; // Establish stacking context
+
+  .brand-side {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 3px dashed rgba(255, 255, 255, 0.4);
+    color: white;
+    position: relative;
+    z-index: 5; // Force it above the white side
+
+    .pct-input-wrapper {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto; // Force interaction
+
+      .pct-edit-input {
+        background: transparent !important;
+        border: none !important;
+        color: white;
+        font-size: 4.5rem;
+        font-weight: 900;
+        width: 120px;
+        text-align: right;
+        outline: none;
+        cursor: text;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      .pct-symbol {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-left: 5px;
+      }
+    }
+
+    .label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  }
+
+  .info-side {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-white);
+    z-index: 1; // Lower than brand-side
+
+    .title-edit,
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      border: none;
+      background: transparent;
+      margin-bottom: 10px;
+      width: 100%;
+      outline: none;
+    }
+
+    .desc-edit,
+    p {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-style: italic;
+      color: #636e72;
+      resize: none;
+      font-size: 1.1rem;
+      outline: none;
+    }
+
+    .code-badge {
+      padding: 12px;
+      text-align: center;
+      border-radius: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.2rem;
+    }
+  }
+
+  // --- FRAME LOGIC (INSIDE PARENT) ---
+  &.classic-red,
+  &.frame-red {
+    background: var(--primary-red);
+
+    .info-side .title-edit,
+    .info-side h2 {
+      color: var(--primary-red);
+    }
+
+    .code-badge {
+      background: var(--primary-red);
+      color: white;
+    }
+  }
+
+  &.modern-dark,
+  &.frame-dark {
+    background: var(--dark-bg);
+
+    .info-side .title-edit,
+    .info-side h2 {
+      color: var(--dark-bg);
+    }
+
+    .code-badge {
+      background: var(--dark-bg);
+      color: white;
+    }
+
+    .brand-side {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &.onam-gold,
+  &.frame-gold {
+    background: var(--gold-grad);
+
+    .info-side .title-edit,
+    .info-side h2 {
+      color: #b8860b;
+    }
+
+    .code-badge {
+      background: #b8860b;
+      color: white;
+    }
+  }
+
+  &.neon-sport,
+  &.frame-neon {
+    background: var(--neon-grad);
+
+    .info-side .title-edit,
+    .info-side h2 {
+      color: #0984e3;
+    }
+
+    .code-badge {
+      background: #0984e3;
+      color: white;
+    }
+  }
 }
 
-.title-edit { font-size: 1.4rem; font-weight: bold; border: none; outline: none; margin-bottom: 5px; }
-textarea { flex: 1; border: none; font-style: italic; color: #636e72; resize: none; outline: none; }
+// --- 4. Buttons, History, Modal ---
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
 
-.code-area {
-  background: #f1f2f6;
-  padding: 8px;
-  text-align: center;
-  border: 1px dashed #d63031;
-  font-weight: bold;
-  letter-spacing: 1px;
+  button {
+    padding: 12px 28px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &.btn-img {
+      background: #00b894;
+      color: white;
+
+      &:hover {
+        background: #009476;
+        transform: translateY(-2px);
+      }
+    }
+
+    &.btn-save {
+      background: #0984e3;
+      color: white;
+
+      &:hover {
+        background: #076aba;
+        transform: translateY(-2px);
+      }
+    }
+  }
 }
 
-.btn-img { background: #00b894; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-.btn-save { background: #0984e3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+
+  .mini-coupon {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+
+    &:hover {
+      transform: scale(1.03);
+      border-color: #6c5ce7;
+    }
+
+    .mini-left {
+      width: 70px;
+      padding: 20px 10px;
+      color: white;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.classic-red,
+      &.frame-red {
+        background: var(--primary-red);
+      }
+
+      &.modern-dark,
+      &.frame-dark {
+        background: var(--dark-bg);
+      }
+
+      &.onam-gold,
+      &.frame-gold {
+        background: #d4af37;
+      }
+
+      &.neon-sport,
+      &.frame-neon {
+        background: #00cec9;
+      }
+    }
+
+    .mini-right {
+      padding: 15px;
+      flex: 1;
+
+      strong {
+        display: block;
+        color: #2d3436;
+      }
+
+      code {
+        font-size: 0.8rem;
+        background: #f1f2f6;
+        padding: 3px 8px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  .modal-content {
+    position: relative;
+
+    .close-modal {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+
+    .pct-display-value {
+      font-size: 4rem;
+      font-weight: bold;
+    }
+  }
+}

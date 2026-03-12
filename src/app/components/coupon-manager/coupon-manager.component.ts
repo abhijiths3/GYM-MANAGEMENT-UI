@@ -9,50 +9,55 @@ import { CommonModule } from '@angular/common';
   selector: 'app-coupon-manager',
   standalone: true,
   templateUrl: './coupon-manager.component.html',
-  imports:[
-    CommonModule,
-    FormsModule,
-  ],
-  styleUrls: ['coupon-manager.component.scss']
+  styleUrls: ['./coupon-manager.component.scss'],
+  imports: [CommonModule, FormsModule]
 })
 export class CouponManagerComponent implements OnInit {
   @ViewChild('couponGraphic') couponGraphic!: ElementRef;
-  
+
   vibeInput: string = '';
   currentCoupon: Coupon | null = null;
   history: Coupon[] = [];
   isProcessing: boolean = false;
+  selectedFrame: string = 'classic-red';
+  selectedHistoryCoupon: any = null;
 
-  constructor(private couponService: CouponService) {}
+  frames = [
+    { id: 'classic-red', name: 'Classic Red', class: 'classic-red' },
+    { id: 'modern-dark', name: 'Modern Dark', class: 'modern-dark' },
+    { id: 'onam-gold', name: 'Onam Gold', class: 'onam-gold' },
+    { id: 'neon-sport', name: 'Neon Sport', class: 'neon-sport' }
+  ];
+
+  constructor(private couponService: CouponService) { }
 
   ngOnInit() { this.loadHistory(); }
 
-  // 1. Get data from AI
   onGenerate() {
     if (!this.vibeInput) return;
     this.isProcessing = true;
     this.couponService.generateAiDraft(this.vibeInput).subscribe({
       next: (res) => {
         this.currentCoupon = res;
+        this.currentCoupon.frameName = this.selectedFrame;
         this.isProcessing = false;
       },
       error: () => this.isProcessing = false
     });
   }
 
-  // 2. Convert the HTML/CSS Design into a real PNG Image
   async downloadCouponImage() {
     if (!this.couponGraphic) return;
-    const canvas = await html2canvas(this.couponGraphic.nativeElement);
+    const canvas = await html2canvas(this.couponGraphic.nativeElement, { scale: 2, backgroundColor: null });
     const link = document.createElement('a');
     link.download = `GymCoupon-${this.currentCoupon?.code}.png`;
     link.href = canvas.toDataURL();
     link.click();
   }
 
-  // 3. Save to Database
   onSave() {
     if (this.currentCoupon) {
+      this.currentCoupon.frameName = this.selectedFrame; // Sync frame before save
       this.couponService.saveCoupon(this.currentCoupon).subscribe(() => {
         this.loadHistory();
         this.currentCoupon = null;
@@ -64,4 +69,7 @@ export class CouponManagerComponent implements OnInit {
   loadHistory() {
     this.couponService.getHistory().subscribe(res => this.history = res);
   }
+
+  openPopup(coupon: any) { this.selectedHistoryCoupon = coupon; }
+  closePopup() { this.selectedHistoryCoupon = null; }
 }
