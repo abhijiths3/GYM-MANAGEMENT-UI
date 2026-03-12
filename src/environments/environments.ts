@@ -1,3 +1,5 @@
+import { generate } from "rxjs";
+
 export const environment = {
     production: false,
     apiBaseUrl: 'https://localhost:7189/api',
@@ -8,9 +10,10 @@ export const environment = {
             create: 'Members'
         },
 
-        // members: {
-        //     getAll: 'Members',
-        //     create: 'Members'
-        // }
+        coupon: {
+            getAllCoupons: 'Coupons',
+            generate: 'Coupons/generate',
+            save: 'Coupons/save'
+        }
     }
 };

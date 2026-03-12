@@ -1,0 +1,33 @@
+<div class="manager-container">
+  <h2>AI Gym Coupon Studio</h2>
+
+  <div class="search-box">
+    <input [(ngModel)]="vibeInput" placeholder="Enter vibe (e.g. Onam Special 2026)">
+    <button (click)='onGenerate()' [disabled]="isProcessing">Generate Design</button>
+  </div>
+
+  <div *ngIf="currentCoupon" class="editor-layout">
+    <div #couponGraphic class="coupon-card-design">
+      <div class="red-side">
+        <span class="pct">{{currentCoupon.discountPercent}}%</span>
+        <span class="label">OFF</span>
+      </div>
+      <div class="white-side">
+        <input class="title-edit" [(ngModel)]="currentCoupon.title">
+        <textarea [(ngModel)]="currentCoupon.description"></textarea>
+        <div class="code-area">USE CODE: {{currentCoupon.code}}</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-img" (click)="downloadCouponImage()">Download as Image (.png)</button>
+      <button class="btn-save" (click)="onSave()">Save to Database</button>
+    </div>
+  </div>
+
+  <div class="history-grid">
+    <div *ngFor="let c of history" class="mini-card">
+      <strong>{{c.title}}</strong> - {{c.code}}
+    </div>
+  </div>
+</div>

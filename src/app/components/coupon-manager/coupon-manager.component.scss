@@ -1,0 +1,45 @@
+.coupon-card-design {
+  width: 550px;
+  height: 220px;
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.red-side {
+  background: #d63031;
+  color: white;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 3px dashed #fff;
+}
+
+.pct { font-size: 3rem; font-weight: bold; }
+
+.white-side {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-edit { font-size: 1.4rem; font-weight: bold; border: none; outline: none; margin-bottom: 5px; }
+textarea { flex: 1; border: none; font-style: italic; color: #636e72; resize: none; outline: none; }
+
+.code-area {
+  background: #f1f2f6;
+  padding: 8px;
+  text-align: center;
+  border: 1px dashed #d63031;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-img { background: #00b894; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+.btn-save { background: #0984e3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
