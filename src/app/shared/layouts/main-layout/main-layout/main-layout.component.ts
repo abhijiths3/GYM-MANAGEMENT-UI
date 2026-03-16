@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { FooterComponent } from '../../../components/footer/footer.component';
 @Component({
   standalone: true,
   selector: 'app-main-layout',
@@ -17,7 +18,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
             MatIconModule,
             MatButtonModule,
             MatSidenavModule,
-            MatListModule],
+            MatListModule,
+            FooterComponent],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
