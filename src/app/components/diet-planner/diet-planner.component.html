@@ -1,0 +1,78 @@
+<!-- <mat-card class="planner-card">
+  <mat-card-header>
+    <div mat-card-avatar class="ai-icon">
+      <mat-icon color="primary">bolt</mat-icon>
+    </div>
+    <mat-card-title>AI Gym Assistant</mat-card-title>
+    <mat-card-subtitle>Generate personalized Diet & Workouts with Grok</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-stepper #stepper linear>
+      
+      <mat-step [stepControl]="plannerForm">
+        <ng-template matStepLabel>Member Stats</ng-template>
+        <form [formGroup]="plannerForm" class="step-container">
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Select Member</mat-label>
+            <input type="text" matInput formControlName="member" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let m of filteredMembers | async" [value]="m.name">
+                {{m.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+              <input matInput type="number" formControlName="age">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Weight (kg)</mat-label>
+              <input matInput type="number" formControlName="weight">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Height (cm)</mat-label>
+              <input matInput type="number" formControlName="height">
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button color="primary" matStepperNext (click)="generatePlan()">
+            Analyze & Generate
+          </button>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>AI Plan</ng-template>
+        
+        <div *ngIf="isLoading" class="loading-state">
+          <mat-spinner diameter="50"></mat-spinner>
+          <p>Grok AI is crafting the perfect plan...</p>
+        </div>
+
+        <div *ngIf="!isLoading">
+          <div class="status-banner" [attr.data-status]="bmiStatus">
+            Classification: <strong>{{bmiStatus}}</strong>
+          </div>
+          
+          <div class="plan-display">
+            <pre>{{generatedPlan}}</pre> 
+          </div>
+
+          <div class="action-buttons">
+            <button mat-flat-button color="accent" (click)="downloadPdf()">
+              <mat-icon>file_download</mat-icon> Download PDF
+            </button>
+            <button mat-stroked-button (click)="stepper.reset()">
+              Start New
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </mat-card-content>
+</mat-card> -->

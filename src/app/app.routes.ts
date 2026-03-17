@@ -28,7 +28,13 @@ export const routes: Routes = [
       loadComponent: () => 
         import('./components/coupon-manager/coupon-manager.component')
       .then(m => m.CouponManagerComponent)
-    }
+    },
+    // {
+    //   path: '',
+    //   loadComponent: () =>
+    //     import('./components/diet-planner/diet-planner.component')
+    //   .then(m => m.DietPlannerComponent)
+    // }
     ]
     }
 ]

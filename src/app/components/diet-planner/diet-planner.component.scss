@@ -1,0 +1,53 @@
+// .planner-card {
+//   max-width: 900px;
+//   margin: 20px auto;
+//   border-radius: 12px;
+//   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+// }
+
+// .step-container {
+//   display: flex;
+//   flex-direction: column;
+//   padding: 20px 0;
+//   gap: 15px;
+
+//   .row {
+//     display: flex;
+//     gap: 10px;
+//     mat-form-field { flex: 1; }
+//   }
+// }
+
+// .status-banner {
+//   padding: 15px;
+//   border-radius: 8px;
+//   margin-bottom: 20px;
+//   text-align: center;
+//   background: #f0f0f0;
+  
+//   &[data-status="Overweight"] { background: #ffebee; color: #c62828; }
+//   &[data-status="Normal"] { background: #e8f5e9; color: #2e7d32; }
+//   &[data-status="Underweight"] { background: #fff3e0; color: #ef6c00; }
+// }
+
+// .plan-display {
+//   background: #fafafa;
+//   border: 1px solid #eee;
+//   padding: 20px;
+//   border-radius: 8px;
+//   max-height: 400px;
+//   overflow-y: auto;
+//   font-family: 'Roboto', sans-serif;
+//   white-space: pre-wrap;
+// }
+
+// .action-buttons {
+//   margin-top: 20px;
+//   display: flex;
+//   gap: 10px;
+// }
+
+// .loading-state {
+//   text-align: center;
+//   padding: 40px;
+// }
