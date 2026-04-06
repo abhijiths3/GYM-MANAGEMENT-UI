@@ -29,6 +29,12 @@ export const routes: Routes = [
         import('./components/coupon-manager/coupon-manager.component')
       .then(m => m.CouponManagerComponent)
     },
+        {
+      path: '',
+      loadComponent: () => 
+        import('./components/coupon-manager/coupon-manager.component')
+      .then(m => m.CouponManagerComponent)
+    },
     // {
     //   path: '',
     //   loadComponent: () =>
