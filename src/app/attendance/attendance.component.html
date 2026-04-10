@@ -1,0 +1,78 @@
+<div class="attendance-container">
+  <h1>Attendance Calendar</h1>
+
+  <!-- Month/Year Navigation -->
+  <div class="calendar-header">
+    <button (click)="previousMonth()">&lt;</button>
+    <span>{{ currentDate | date:'MMMM yyyy' }}</span>
+    <button (click)="nextMonth()">&gt;</button>
+    <select [(ngModel)]="selectedYear" (ngModelChange)="changeYear(selectedYear)">
+      <option *ngFor="let year of getYears()" [value]="year">{{ year }}</option>
+    </select>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid">
+    <div class="day-header" *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+      {{ day }}
+    </div>
+    <div
+      class="day-cell"
+      *ngFor="let date of getDaysInMonth(currentDate)"
+      [class.current-month]="isCurrentMonth(date)"
+      [class.has-attendance]="hasAttendance(date)"
+      (click)="selectDate(date)">
+      {{ date | date:'d' }}
+    </div>
+  </div>
+
+  <!-- Day Details Modal -->
+  <div class="modal" *ngIf="showDetails" (click)="closeDetails()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>Attendance for {{ selectedDate | date:'fullDate' }}</h2>
+
+      <!-- Existing Attendance -->
+      <div class="attendance-list">
+        <h3>Logged Attendance</h3>
+        <table *ngIf="selectedDayAttendance.length > 0; else noAttendance" class="attendance-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of selectedDayAttendance">
+              <td>{{ getMemberById(record.memberId)?.firstName }} {{ getMemberById(record.memberId)?.lastName }}</td>
+              <td>{{ getMemberById(record.memberId)?.phoneNumber }}</td>
+              <td>{{ record.checkInTime | date:'shortTime' }}</td>
+              <td>{{ record.checkOutTime | date:'shortTime' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noAttendance>
+          <p>No attendance logged for this day.</p>
+        </ng-template>
+      </div>
+
+      <!-- Add New Attendance -->
+      <div class="add-attendance">
+        <h3>Add Attendance</h3>
+        <input type="text" [(ngModel)]="searchTerm" (input)="searchMembers()" placeholder="Search by name or phone...">
+        <div class="member-list" *ngIf="filteredMembers.length > 0">
+          <div *ngFor="let member of filteredMembers.slice(0, 10)" class="member-item" (click)="selectMember(member)">
+            {{ member.firstName }} {{ member.lastName }} - {{ member.phoneNumber }}
+          </div>
+        </div>
+        <div *ngIf="selectedMember">
+          <p>Selected: {{ selectedMember.firstName }} {{ selectedMember.lastName }} - {{ selectedMember.phoneNumber }}</p>
+          <button (click)="addAttendance()" [disabled]="!selectedMember">Add Attendance</button>
+        </div>
+      </div>
+
+      <button (click)="closeDetails()">Close</button>
+    </div>
+  </div>
+</div>

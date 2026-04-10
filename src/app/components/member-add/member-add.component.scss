@@ -1,13 +1,14 @@
 /* Center the card on page */
 mat-card {
     max-width: 500px;
-    margin: 40px auto;
-    padding: 25px 30px;
+    margin: 10px auto;
+    padding: 23px 30px;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     background: #ffffff;
+    overflow: hidden !important;
+    
 }
-
 /* Card title */
 mat-card-title {
     text-align: center;
@@ -36,6 +37,8 @@ mat-form-field {
 
 /* Submit button */
 button[type="submit"] {
+    color: #ffffff;
+    background-color: #4060a6;
     margin-top: 15px;
     height: 45px;
     font-size: 15px;

@@ -1,0 +1,31 @@
+<div class="membership-container">
+  <header class="page-header">
+    <h1><i class="fas fa-dumbbell"></i> Membership Plans</h1>
+    <p>Choose the perfect plan for your fitness journey</p>
+  </header>
+
+  <div class="plans-grid">
+    <div *ngFor="let plan of membershipTypes" class="plan-card">
+      <div class="plan-image">
+        <img [src]="plan.imageUrl || 'assets/images/default-plan.jpg'" [alt]="plan.name">
+        <div class="plan-badge">{{ plan.durationInMonths }} Months</div>
+      </div>
+      <div class="plan-content">
+        <h3 class="plan-name">{{ plan.name }}</h3>
+        <div class="plan-price">
+          <span class="currency">₹</span>
+          <span class="amount">{{ plan.price }}</span>
+        </div>
+        <p class="plan-description">{{ plan.description }}</p>
+        <button class="select-btn" (click)="selectPlan(plan)">
+          <i class="fas fa-check"></i> Select Plan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="membershipTypes.length === 0" class="no-plans">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Loading membership plans...</p>
+  </div>
+</div>

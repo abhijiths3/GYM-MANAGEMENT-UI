@@ -14,6 +14,14 @@ export const environment = {
             getAllCoupons: 'Coupons',
             generate: 'Coupons/generate',
             save: 'Coupons/save'
+        },
+        attendance: {
+            getAttendance: 'Attendance',
+            save: 'Attendance'
+        },
+        memberships: {
+            getMemberships: 'MembershipTypes',
+            create: 'MembershipTypes'
         }
     }
 };

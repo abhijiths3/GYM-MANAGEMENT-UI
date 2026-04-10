@@ -41,6 +41,18 @@ export const routes: Routes = [
     //     import('./components/diet-planner/diet-planner.component')
     //   .then(m => m.DietPlannerComponent)
     // }
+    {
+      path: 'attendance',
+      loadComponent: () =>
+        import('./attendance/attendance.component')
+          .then(m => m.AttendanceComponent)
+    },
+    {
+      path: 'memberships',
+      loadComponent: () =>
+        import('./components/membership-type/membership-type.component')
+          .then(m => m.MembershipTypeComponent)
+    }
     ]
     }
 ]

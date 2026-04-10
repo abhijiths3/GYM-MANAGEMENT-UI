@@ -18,10 +18,16 @@
 
 .main-content {
   padding: 20px;
+  overflow: hidden;
 }
 .sidebar {
   background-color: #4060a6;
   width: 250px;
   border-radius: 0px;
   padding: 20px 15px;
+  overflow: hidden !important;
 }
+
+// mat-sidenav-content {
+//   overflow: hidden !important;
+// }
