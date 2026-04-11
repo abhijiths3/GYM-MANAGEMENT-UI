@@ -44,7 +44,7 @@ export class MemberAddComponent implements OnInit {
     private fb: FormBuilder,
     private memberService: MemberService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.nonNullable.group({
@@ -67,7 +67,7 @@ export class MemberAddComponent implements OnInit {
     this.isSubmitting = true;
 
     this.memberService.addMember(payload).subscribe({
-      next: () => this.router.navigate(['/addmember']),
+      next: () => this.router.navigate(['/memberships']),
       error: () => (this.isSubmitting = false)
     });
   }
